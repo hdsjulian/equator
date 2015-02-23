@@ -1,0 +1,37 @@
+  <form method=post action=robot.phtml>
+  <select name=identity>
+  <option value="Mr.King"> Mr.King
+  <option value="Mr.Smith"> Mr.Smith
+  <option value="Mr.Bot"> Mr.Bot
+  <option value="agent01"> agent01
+  <option value="agent02"> agent02
+  <option value="agent03"> agent03
+  <option value="agent04"> agent04
+  <option value="agent40"> agent40
+  <option value="agentX"> agentX
+  </select>
+  <input type=submit>
+<?if ($action=="")>
+  <input type=hidden name=action value=1>
+<? endif>
+<?
+if($action=="1"){
+  $body = exec("/home/un/bin/consa 10 /home/un/txt/text");
+  $body_size=strlen($body);
+  echo "<b>body size: $body_size</b><br>\n";
+  if($body_size<100) {
+    echo "<p><textarea name=body cols=35 rows=5 wrap=auto>\n";
+    echo $body;
+    echo "</textarea>\n";
+    echo "<input type=hidden name=action value=2>\n";
+  }
+}
+  if($action=="2"){
+    $PHP_AUTH_USER=$identity;
+    mysql_connect("localhost","chat","chat");
+    $timestamp = time();
+    mysql("kingdom","insert into eq_chat values('','$PHP_AUTH_USER',$timestamp,'','$body')");
+  }
+
+>
+</form>

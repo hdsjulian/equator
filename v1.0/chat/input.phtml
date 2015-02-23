@@ -1,0 +1,41 @@
+<meta http-equiv="Refresh" content="60; URL=input.phtml">
+<BODY BGCOLOR=#000000 text=eeeeee LINK=#99ff99 VLINK=#99ff99>
+<form method=post action=chat.phtml target=chat>
+&nbsp;&nbsp;&nbsp;<font size=-2>this is experimental and may work or not...</font><br>
+<nobr>
+&nbsp;&nbsp;&nbsp;<input type=text size=75 maxlength=100 name=text>
+<input type=submit value=send>
+<input type=reset value=clear>
+</nobr>
+<input type=hidden name=action value=chat>
+</form>
+<font size=-2>
+<?
+$timestamp = time();
+mysql_connect("localhost","chat","chat");
+$count= $timestamp - 300;
+$result=mysql("kingdom","select distinct user from chat where stamp > $count");
+$num=mysql_numrows($result);
+echo "&nbsp;&nbsp;&nbsp;online last 5 min: ";
+if($num<=0){
+  echo "nobody\n";
+}
+$k=0;
+while($k<$num){
+  $user=mysql_result($result,$k,"user");
+  echo "[ $user ] \n";
+  $k++;
+}
+
+if($action=="mailme"){
+/*  mail(
+    "un",
+    "chat with me",
+    "$PHP_AUTH_USER wants to chat..."
+  ); */
+  echo "<br>&nbsp;&nbsp;&nbsp;calling the sys&oslash;p, please wait...\n";
+} else {
+  echo "<br>&nbsp;&nbsp;&nbsp;<a href=input.phtml?action=mailme>klick</a> if no one is there...\n";
+}
+>
+</font>

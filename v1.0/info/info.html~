@@ -1,0 +1,118 @@
+<html>
+
+<head>
+<title>A.D.O.T.E.A.S.O.L. - INFO</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" font
+face="Geneva">
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+</head>
+
+<body topmargin="0" bgcolor="000000" text="FFFFFF" link="#88FF00" vlink="#88FF00"
+alink="#FFFF00">
+<div align="left">
+
+<table border="0" width="40%" cellpadding="4" cellspacing="4">
+  <tr>
+    <td width="20%"><a href="http://king.dom.de/equator/v1.0/map.phtml"><font size="-1">MAP</font></a></td>
+    <td width="20%"><a href="http://king.dom.de/equator/v1.0/news.phtml"><font size="-1">NEWS</font></a></td>
+    <td width="20%"><a href="http://king.dom.de/equator/v1.0/chat/index.html"><font size="-1">CHAT</font></a></td>
+    <td width="20%"><a href="http://king.dom.de/equator/v1.0/auto.phtml"><font size="-1">RUN</font></a></td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellpadding="4" cellspacing="4" bgcolor="#000000">
+  <tr>
+    <th valign="baseline"><font size="+3" face="Geneva">ØtherLands</font></th>
+    <th valign="baseline"><font size="+3" face="Geneva">[INFO]</font></th>
+    <th valign="texttop" align="LEFT"><a href="mailto:core@king.dom.de"><b>©ore</b></a>:
+    Philip Pocock, Florian Wenz, Udo Noll, Felix Huber.<br>
+    <font size="-1">©o-authors: Frederick William Ayer, Mo Diener, Davide Legittimo,<br>
+    John Zinsser, Nanne Prauda, Agent40, and ØtherSelves. </font></th>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellpadding="4" cellspacing="4" bgcolor="#000000">
+  <tr>
+    <th align="LEFT" bgcolor="334508" colspan="2">SITE MODES</th>
+    <th align="LEFT" bgcolor="334508" colspan="2">SCREEN MODES</th>
+  </tr>
+  <tr>
+    <td><font size="-1" color="#88FF00">identity</font></td>
+    <td valign="CENTER"><b><tt>agentXX or guest.</tt></b></td>
+    <td><font size="-1" color="#88FF00">[1]</font></td>
+    <td valign="CENTER"><b><tt>Standard mono-screen movie mode.</tt></b></td>
+  </tr>
+  <tr>
+    <td><font size="-1" color="#88FF00">CHAT</font></td>
+    <td valign="CENTER"><b><tt>Chat mode. Agent40 is always there.</tt></b></td>
+    <td><font size="-1" color="#88FF00">[V]</font></td>
+    <td valign="CENTER"><b><tt>Vertical split-screen movie mode. Recursive.</tt></b></td>
+  </tr>
+  <tr>
+    <td><font size="-1" color="#88FF00">MAP</font></td>
+    <td valign="CENTER"><b><tt>Indexes storyline start points. Search function.</tt></b></td>
+    <td><font size="-1" color="#88FF00">[H]</font></td>
+    <td valign="CENTER"><b><tt>Horizontal split-screen movie mode. Recursive.</tt></b></td>
+  </tr>
+  <tr>
+    <td><font size="-1" color="#88FF00">NEWS</font></td>
+    <td valign="CENTER"><b><tt>Lists 50 newest script entries.</tt></b></td>
+    <td><font size="-1" color="#FFFFFF"><nobr><b><tt>12 345:67890</tt></b></nobr></font></td>
+    <td valign="CENTER"><b><tt>scene# : # of SCRIPT mode hits : # of RUN mode hits.</tt></b></td>
+  </tr>
+  <tr>
+    <th align="LEFT" bgcolor="334508" colspan="2">MOVIE AND SCRIPT CONTROLS</th>
+    <th align="LEFT" bgcolor="334508" colspan="2">BOT MODES</th>
+  </tr>
+  <tr>
+    <td><font size="-1" color="#880000">PREV</font></td>
+    <td valign="CENTER"><b><tt>Previous scene.</tt></b></td>
+    <td colspan="2"><b><tt>Send mail To: <a href="mailto:robot@king.dom.de">robot@king.dom.de</a>
+    /Subject: 40 /No Message Body.</tt></b></td>
+  </tr>
+  <tr>
+    <td><font size="-1" color="#880000">NEXT</font></td>
+    <td valign="CENTER"><b><tt>Next scene.</tt></b></td>
+    <td colspan="2"><b><tt>Visit both the <a href="http://king.dom.de/tmp/words.phtml">recombined
+    equator.</a> and <a href="http://king.dom.de:7777">WierdWord</a> word-game modes, using
+    our text database entries.</tt></b></td>
+  </tr>
+  <tr>
+    <td><font size="-1" color="#88FF00">RUN</font></td>
+    <td valign="CENTER"><b><tt>Enters auto-Run movie mode.</tt></b></td>
+    <th align="LEFT" bgcolor="334508" colspan="2">&#147;EQUATOR&#132; TALKS AND INSTALLATIONS</th>
+  </tr>
+  <tr>
+    <td><font size="-1" color="#88FF00"><blink>add</blink></font></td>
+    <td valign="CENTER"><b><tt><font color="#FFFFFF">Opens scene input mode. Messages
+    (text/images) will be added accordingly.</font></tt></b></td>
+    <td colspan="2"><b><tt>documenta x 100 Days 100 Guests lecture (23.08.97): <a
+    href="http://www.mediaweb-tv.de/dx/0822/gaeste_frame_e.html">day 63 (Philip Pocock)</a>
+    (RealPlayer required.) Or <a href="http://king.dom.de/equator/v1.0/info/100_days.html">(TEXT
+    only.)</tt></b></a></td>
+  </tr>
+  <tr>
+    <td><font size="-1" color="#88FF00">ins</font></td>
+    <td valign="CENTER"><b><tt>Agent status required. Inserts scene accordingly.</tt></b></td>
+    <td colspan="2"><b><tt>Schloss Solitude lecture (14.11.97): <a
+    href="http://king.dom.de/equator/v1.0/info/mewe.htm">&quot;MeWe!&quot;</tt></b></a></td>
+  </tr>
+  <tr>
+    <td><font size="-1" color="#88FF00">upd</font></td>
+    <td valign="CENTER"><b><tt>Agent status required. Updates scene accordingly.</tt></b></td>
+    <td colspan="2"><b><tt>&quot;ØtherLands&quot; - 7th International Video Week (01.10. -
+    09.11.97): <a href="http://king.dom.de/equator/v1.0/info/geneva.htm">installation views
+    and report.</tt></b></a></td>
+  </tr>
+  <tr>
+    <td><font size="-1" color="#88FF00">del</font></td>
+    <td valign="CENTER"><b><tt>Agent status required. Deletes scene accordingly. WARNING! Any
+    following scenes are eliminated.</tt></b></td>
+    <td colspan="2"><b><tt>&quot;ØtherLands&quot; - 1st Performance Festival Odense
+    (29.11. - 03.13.97): <a href="http://king.dom.de/equator/v1.0/info/odense.htm">installation
+    views and report.</tt></b></a></td>
+  </tr>
+</table>
+</div>
+</body>
+</html>

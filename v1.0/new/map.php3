@@ -1,0 +1,176 @@
+<?
+include "check.inc";
+include "settings.inc";
+echo "<head> <title> Equator 1.0: Script </title> </head>";
+echo $body_sets;
+
+include "functions.inc";
+include "header.inc";
+
+$debug = 0;
+
+echo "<table width=100% align=center>\n";
+echo "<tr><td colspan=2>";
+
+
+if ($action == "search" && $search_str != ''):
+
+	echo "<tr><td bgcolor=$info_color>";
+	
+	/* $search_str = mysql_regcase($search_str); */
+	$search_str = "%" . $search_str . "%";
+
+	$sql = "select _index, tag from nodes where body like '$search_str' or tag like '$search_str' order by tag";
+
+	$result = mysql_db_query($database,$sql);
+	$numrows = mysql_num_rows($result);
+	
+	echo "FOUND: ";
+	
+	$i = 0;
+	while ($i < $numrows):
+	
+		$tag = mysql_result($result,$i,"tag");
+		$index = mysql_result($result,$i,"_index");
+		echo "<a href=script.php3?node=$index>$tag</a> . ";
+		
+		$i++;
+	endwhile;
+
+endif;
+
+/* STORYLINES Start Points */
+
+$sql = "select properties.reference, nodes.created, nodes.tag from properties, nodes where properties.type = 'control' and properties.value = 'start' and nodes._index = properties.reference order by nodes.created desc";
+
+
+$result = mysql_db_query($database,$sql);
+$numrows = mysql_num_rows($result);
+
+echo "<tr><td colspan=2 bgcolor=000000>";
+
+echo "STORYLINES (Click on a storyline title below. &Oslash;therLands runs from there, from the Equator in Africa, Asia or &Oslash;therWhere...)<br>";
+
+$i = 0;
+while ($i < $numrows):
+
+	$tag = mysql_result($result,$i,"nodes.tag");
+	$index = mysql_result($result,$i,"properties.reference");
+	echo "<a href=auto.php3?this_node=$index>$tag</a>  &Oslash;  ";
+	
+	$i++;
+endwhile;
+
+/* MOST POPULAR */
+
+$sql = "select _index, tag, hits from $nodes_t order by hits desc";
+
+$result = mysql_db_query($database,$sql);
+$numrows = mysql_num_rows($result);
+
+$max = 20;
+if ($numrows > $max): $numrows = $max; endif;
+
+echo "<tr><td>";
+
+echo "MOST POPULAR SCENES:<br>\n";
+
+
+$i = 0;
+while ($i < $numrows):
+
+	$tag = mysql_result($result,$i,"tag");
+	$hits = mysql_result($result,$i,"hits");
+	$index = mysql_result($result,$i,"_index");
+	echo "<a href=script.php3?node=$index>$tag</a> ($hits) . ";
+	
+	$i++;
+endwhile;
+
+
+/* LEAST POPULAR */
+
+$sql = "select _index, tag, hits from $nodes_t order by hits";
+
+$result = mysql_db_query($database,$sql);
+$numrows = mysql_num_rows($result);
+
+$max = 20;
+if ($numrows > $max): $numrows = $max; endif;
+
+echo "<td>";
+
+echo "LEAST POPULAR SCENES:<br>\n";
+
+
+$i = 0;
+while ($i < $numrows):
+
+	$tag = mysql_result($result,$i,"tag");
+	$hits = mysql_result($result,$i,"hits");
+	$index = mysql_result($result,$i,"_index");
+	echo "<a href=script.php3?node=$index>$tag</a> ($hits) . ";
+	
+	$i++;
+endwhile;
+
+/* 
+GENRE pointers
+
+$type[] = "genre";
+
+$cnt = 0;
+while ($cnt < count($type));
+
+	echo "<p><tr><td align=left>";
+	
+	$sql = "select distinct value from properties where type = '$type[$cnt]' order by value";
+	$genre_r = mysql_db_query($database,$sql);
+	$genre_nr = mysql_num_rows($genre_r);
+	
+	$type_str = strtoupper($type[$cnt]);
+	echo "$type_str: <br>";
+	
+	$i_g = 0;
+	while ($i_g < $genre_nr);
+		$genre = mysql_result($genre_r,$i_g,"value");
+		
+		echo "$genre: </a>";
+		
+		$sql = "select properties.reference, nodes.edited, nodes.tag from properties, nodes where properties.type = '$type[$cnt]' and properties.value = '$genre' and nodes._index = properties.reference order by nodes.edited";
+	
+		$result = mysql_db_query($database,$sql);
+		$numrows = mysql_num_rows($result);
+	
+		
+		$i = 0;
+		while ($i < $numrows);
+		
+			$tag = mysql_result($result,$i,"nodes.tag");
+			$index = mysql_result($result,$i,"properties.reference");
+			echo "<a href=script.php3?node=$index>$tag . </a>";
+			
+			$i++;
+		endwhile;
+	
+			
+		$i_g++;
+	endwhile;
+	
+	$cnt++;
+endwhile;
+
+ */
+echo "<tr><td align=left>";
+
+		echo "<form action=$PHP_SELF?action=search method=post>";
+		
+		echo "<input name=search_str type=Text SIZE=20>";
+		echo "<input type=submit value=\"Search the &quot;Equator&quot;!\">";
+		
+		echo "</form>";
+
+
+echo "</td></tr>";
+echo "</table>\n";
+?>

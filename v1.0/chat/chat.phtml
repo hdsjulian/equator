@@ -1,0 +1,52 @@
+<?php 
+include ("../check.inc");
+
+?>
+<meta http-equiv="Refresh" content="5; URL=chat.phtml">
+<BODY BGCOLOR=#000000 text=eeeeee LINK=#99ff99 VLINK=#99ff99>
+<font size=-1>
+
+<?php
+#todo: mysql connection geradeziehen, get/post-variabeln sanitizen
+mysql_connect("localhost","chat","chat");
+$timestamp = time();
+
+if($action=="chat" && $text!=""){
+  mysql("kingdom","insert into chat values('','$PHP_AUTH_USER',$timestamp,'','$text')");
+  if(ereg("(Lucy|Brian)",$text,$match)){
+    include "$match.inc";
+  }
+}
+
+$result=mysql("kingdom","select user,text,stamp from chat order by seq desc");
+$num=mysql_numrows($result);
+$stamp=mysql_result($result,$i,"stamp");
+
+if($timestamp-$stamp>300){
+  echo "<br>no activity within the last 5 minutes...\n";
+} else {  
+
+  if($num>25){
+    $num=25;
+  }
+  $i=0;
+  while($i<$num){
+    $user=mysql_result($result,$i,"user");
+    $text=mysql_result($result,$i,"text");
+    echo "<b>$user:</b> \n";
+    echo "$text<br>\n";
+    $i++;
+  }
+  if($timestamp%11==0){
+    include "/var/www/chat/robot.inc";
+  }
+}
+?>
+<p>
+<a target=_top href=../info/info.html>[INFO]</a>   
+<a target=_top href=../map.phtml>[MAP]</a>   
+<a target=_top href=../news.phtml>[NEWS]</a>
+<br>
+&copy;c&oslash;re 1997 <a href=mailto:un@dom.de>u04</a>
+</font>
+</body>

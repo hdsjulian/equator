@@ -1,0 +1,8 @@
+<?
+  $body = exec("/home/un/bin/consa 10 /home/un/txt/text");
+  $body_size=strlen($body);
+  if($body_size<100) {
+    $PHP_AUTH_USER="agent40";
+    mysql("kingdom","insert into eq_chat values('','$PHP_AUTH_USER',$timestamp,'','$body')");
+}
+>

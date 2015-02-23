@@ -1,0 +1,45 @@
+<?
+include "check.inc";
+include "settings.inc";
+echo "<head> <title> Equator 1.0: News </title> </head>";
+echo $body_sets;
+
+include "functions.inc";
+include "header.inc";
+
+$sql = "select nodes._index, nodes.tag, nodes.edited, identities.author, identities.alias, identities.state, places.location from nodes, identities, places where identities._index = nodes.identity and places._index = nodes.place order by nodes.edited desc";
+$result = mysql_db_query($database,$sql);
+
+
+echo "<table>";
+
+
+$num=50;
+
+$row=0;
+while ($row < $num):
+
+    $index = mysql_result($result,$row,"nodes._index");
+    $tag = mysql_result($result,$row,"nodes.tag");
+    $author = mysql_result($result,$row,"identities.author");
+    $alias = mysql_result($result,$row,"identities.alias");
+    $location = mysql_result($result,$row,"places.location");
+    $state = mysql_result($result,$row,"identities.state");
+    
+    $time = mysql_result($result,$row,"nodes.edited");
+	$time_str = Date("H:i d.M", $time); 
+    
+	echo "<tr>";
+	echo "<td> $time_str </td>";
+	echo "<td> $location </td>";
+	echo "<td bgcolor=$info_color> $author </td>";
+	/*echo "<td bgcolor=$info_color> $alias </td>";*/
+	echo "<td bgcolor=$info_color> $state </td>";
+	echo "<td><a href=script.php3?node=$index>$tag ></a></td>";
+    
+    $row++;
+endwhile;
+
+echo "</tr> </table>";
+
+?>
