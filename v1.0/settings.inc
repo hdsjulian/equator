@@ -1,4 +1,4 @@
-<? 
+<?php
 //setshowinfo(0);
 //setlogging(0);
 srand(time());
