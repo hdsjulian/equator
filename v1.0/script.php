@@ -1,4 +1,4 @@
-<?
+<?php
 include "check.inc";
 include "settings.inc";
 echo "<head> <title>Eq 1.0: Script [node $node]</title> </head>";
@@ -11,18 +11,19 @@ $debug = 0;
 
 /* if no node select a default one */
 
-if ($node):
+if ($node) {
 	$node_in = $node;
-else:
+}
+else {
 	$node_in = get_movie();
-endif;
+}
 
 $status = get_status();
-if ($status != "anon"):
+if ($status != "anon") {
 	
 	/* EDIT FUNCTIONS */
 	
-	if ($action == "update"):
+	if ($action == "update"){
 /*        $owner=get_owner($node_in);
 	if ($owner==$PHP_AUTH_USER){ */
 	
@@ -30,16 +31,16 @@ if ($status != "anon"):
 		
 		$sql = "update $nodes_t set body = '$body', edited = $time, tag = '$tag', timing = $timing where _index = $node_in";
 	
-		if ($debug):
+		if ($debug) {
 			echo"$sql <p>";
-		else:
+		} else {
 			mysql_db_query($database,$sql);
-		endif;
+		}
 /*	}*/
 		
-	endif;
+	}
 	
-	if ($action == "add" || $action == "insert"):
+	if ($action == "add" || $action == "insert") {
 	
 		/* get identity */
 		
@@ -62,9 +63,9 @@ if ($status != "anon"):
 		$edited = time();
 		
 		settype($timing, "integer");
-		if (!$timing):
+		if (!$timing) {
 			$timing = 60;
-		endif;
+		}
 		
 		$editor_id = $identity;
 		$hits = 0;
@@ -72,50 +73,63 @@ if ($status != "anon"):
 		$body = $body;
 		
 		/* mail to majordomo by un@dom.de, 22.03.97 */
-		if ($email=="yes"):
+		if ($email=="yes") {
 		$email = "equator";
 		$maildate=date("D, d.M Y");
 		mail("$email", 
 	        "$PHP_AUTH_USER passed through an ¿therLand", 
 		"a new entry to ¿ther Lands was created by $PHP_AUTH_USER\nReference: $index_node $tag\n $maildate :\n\n$body\n\nkeep going...",
 		"From: $PHP_AUTH_USER \<$email\>\nReply-To: $email");
-		endif;
+		}
 	
 		/* SQL CALL */
 		
 		$sql = "insert into $nodes_t values ( $index_node, $created, $edited, '$tag', $identity, $editor_id, $place, $timing, $hits, $displays, '$body')";
 	
-		if ($debug):
+		if ($debug){
 			echo"$sql <p>";
-		else:
+		} else {
 			mysql_db_query($database,$sql);
-		endif;
+		}
 		
 		/* ADD CONNECTION */
 		
 		$new_index = get_new_index($connections_t);
 		
-		if ($action == "add"):
+		if ($action == "add"){
 		
 			$sql = "insert into $connections_t values ( $new_index, $created, $node_in, $index_node, '')";
-			if ($debug): echo"$sql <p>"; else: mysql_db_query($database,"$sql"); endif;
+			if ($debug){ 
+				echo"$sql <p>"; 
+			} else { 
+				mysql_db_query($database,"$sql");
+			}
+
 		
-		elseif ($action == "insert"):
+		elseif ($action == "insert") {
 		
 			$sql = "insert into $connections_t values ( $new_index, $created, $object, $index_node, '')";
-			if ($debug): echo"$sql <p>"; else: mysql_db_query($database,"$sql"); endif;
+			if ($debug) {
+				echo"$sql <p>"; 
+			} else { 
+				mysql_db_query($database,"$sql"); 
+			}
 			
 			$sql = "update $connections_t set origin = $index_node, timestamp = $created " .
 				"where origin = $object and target = $node_in";
-			if ($debug): echo"$sql <p>"; else: mysql_db_query($database,"$sql"); endif;
+			if ($debug) {
+			 echo"$sql <p>"; 
+			} else {
+			 mysql_db_query($database,"$sql");
+			}
 			
 			$node_in = $index_node;
 		
-		endif;
+		}
 		
-	endif;
+	}
 	
-	if ($action == "delete"):
+	if ($action == "delete"){
 		$owner=get_owner($node_in);
 /*		if ($owner==$PHP_AUTH_USER){	 check owner */
 			/* get parents */
@@ -131,37 +145,49 @@ if ($status != "anon"):
 			/* delete node */
 		
 			$sql = "delete from nodes where _index = $node_in";
-			if (! $debug): mysql_db_query($database, $sql); else: echo "$sql <p>"; endif;
+			if (! $debug) {
+				mysql_db_query($database, $sql)
+			} else {
+				echo "$sql <p>";
+			}
 		
 			$sql = "delete from connections where origin = $node_in or target = $node_in";
-			if (! $debug): mysql_db_query($database, $sql); else: echo "$sql <p>"; endif;
+			if (! $debug) {
+				mysql_db_query($database, $sql); 
+			} else {
+				echo "$sql <p>";
+			}
 	
 			/* connect every child to every parent */
 		
 			$children_i = 0;
-			while ($children_i < $children_nr):
+			while ($children_i < $children_nr) {
 		
 				$child_id = mysql_result($children_r,$children_i,"connections.target");
 			
 				$parents_i = 0;
-				while ($parents_i < $parents_nr):
+				while ($parents_i < $parents_nr) {
 				
 				$parent_id = mysql_result($parents_r,$parents_i,"connections.origin");
 				$new_index = get_new_index($connections_t);
 	
 				$sql = "insert into connections values ( " +
 				"$new_index, $now, $parent_id, $child_id, '')";
-				if (! $debug): mysql_db_query($database, $sql); else: echo "$sql <p>"; endif;
+				if (! $debug) {
+				 mysql_db_query($database, $sql); 
+				} else { 
+					echo "$sql <p>"; 
+				}
 				
 				$parents_i++;
-			endwhile;
+			}
 			$children_i++;
-		endwhile;
+		}
 		$node_in = $one_parent;
 		
-	endif;
+	}
 /*	}  owner checked */
-endif;
+}
 
 	
 
